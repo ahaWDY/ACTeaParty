@@ -1,2 +1,2 @@
 # ACTeaParty
-Preparation records for graduate tech interviews
+Preparation materials for graduate tech interviews

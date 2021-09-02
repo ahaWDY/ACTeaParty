@@ -17,7 +17,7 @@
  - 持久性：事务提交是永久操作
 
 数据库隔离级别
-- read_uncommit：均不可解决
-- read_commit：可解决脏读；多数数据库的默认的隔离级别，如SQL Server, Oracle等
-- read_repeatable：可解决脏读、不可重复读；MySQL的默认隔离级别
+- read uncommited：均不可解决
+- read commited：可解决脏读；多数数据库的默认的隔离级别，如SQL Server, Oracle等
+- read repeatable：可解决脏读、不可重复读；MySQL的默认隔离级别
 - serializable：可解决脏读、不可重复读、幻读；事务顺序执行，但性能低，很少使用

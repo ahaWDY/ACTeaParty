@@ -3,7 +3,9 @@
 1. epoll有几种模式？他们之间有什么区别？
 
 简介: https://segmentfault.com/a/1190000003063859
+
 详尽的介绍: https://www.cnblogs.com/lojunren/p/3856290.html
+
 更加详尽的介绍: https://www.cnblogs.com/lojunren/p/3856290.html
 
 在I/O多路复用 (IO Multiplexing)机制之下，例如select, poll, epoll等，一个进程可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。但本质上还是同步I/O，因为他们都需要在读写事件就绪后自己负责读写，也就是说这个读写过程是阻塞的。

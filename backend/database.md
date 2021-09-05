@@ -65,3 +65,6 @@ Redis的优点**
 - read commited：可解决脏读；多数数据库的默认的隔离级别，如SQL Server, Oracle等
 - read repeatable：可解决脏读、不可重复读；MySQL的默认隔离级别
 - serializable：可解决脏读、不可重复读、幻读；事务顺序执行，但性能低，很少使用
+
+3. 说说自己对于 MySQL 常见的两种存储引擎：MyISAM与InnoDB的理解
+4. 数据库索引了解吗？

@@ -48,3 +48,7 @@ if(XHR){
 https://blog.csdn.net/qiphon3650/article/details/77968224
 
 https://blog.csdn.net/weixin_30607659/article/details/96514887
+
+1. 说一下 Http 缓存策略，有什么区别，分别解决了什么问题
+2. GET和POST的请求的区别
+3. POST和PUT请求的区别

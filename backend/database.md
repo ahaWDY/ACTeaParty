@@ -67,4 +67,19 @@ Redis的优点**
 - serializable：可解决脏读、不可重复读、幻读；事务顺序执行，但性能低，很少使用
 
 3. 说说自己对于 MySQL 常见的两种存储引擎：MyISAM与InnoDB的理解
-4. 数据库索引了解吗？
+参考博客：https://blog.csdn.net/helloxiaozhe/article/details/88601028
+
+ MyISAM是MySQL 5.5之前的默认数据库引擎，虽然性能极佳，而且提供了大量的特性，包括全文索引、压缩、空间函数等，但MyISAM不支持事务和行级锁，而且最大的缺陷就是崩溃后无法安全恢复。
+
+5.5版本之后，MySQL引入了InnoDB（另一种数据库引擎），以强化参考完整性与并发违规处理机制，后来就逐渐取代MyISAM。与传统的ISAM与MyISAM相比，InnoDB的最大特色就是支持了ACID兼容的事务（Transaction）功能，类似于PostgreSQL。目前InnoDB采用双轨制授权，一是GPL授权，另一是专有软件授权。
+
+主要区别：
+
+- count运算上的区别： 因为MyISAM缓存有表meta-data（行数等），因此在做COUNT(*)时对于一个结构很好的查询是不需要消耗多少资源的。而对于InnoDB来说，则没有这种缓存。
+- 是否支持事务和崩溃后的安全恢复： MyISAM 强调的是性能，每次查询具有原子性,其执行数度比InnoDB类型更快，但是不提供事务支持。但是InnoDB 提供事务支持事务，外部键等高级数据库功能。 具有事务(commit)、回滚(rollback)和崩溃修复能力(crash recovery capabilities)的事务安全(transaction-safe (ACID compliant))型表。
+- 是否支持外键： MyISAM不支持，而InnoDB支持。
+
+总之，MyISAM更适合读密集的表，而InnoDB更适合写密集的的表。一般来说，如果需要事务支持，并且有较高的并发读取频率(MyISAM的表锁的粒度太大，所以当该表写并发量较高时，要等待的查询就会很多了)，InnoDB是不错的选择（InnoDB有行锁）。如果你的数据量很大（MyISAM支持压缩特性可以减少磁盘的空间占用），而且不需要支持事务MyISAM是最好的选择。
+
+
+5. 数据库索引了解吗？

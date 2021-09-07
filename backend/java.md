@@ -23,11 +23,40 @@ GC详细参考博客：https://blog.csdn.net/suifeng3051/article/details/4829219
 
 5. 如果让你设计一个 HashMap 如何设计？
 
-https://winnerchen.github.io/yiheng.github.io/2017/08/26/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAHashMap/
+自己动手实现一个HashMap： https://winnerchen.github.io/yiheng.github.io/2017/08/26/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAHashMap/
+
 https://www.huaweicloud.com/articles/498753d943d56991cb9c985732be66e7.html
+
+
 LeetCode 706: https://leetcode-cn.com/problems/design-hashmap/
 
-
+大致分为以下几个步骤：
+- Map接口：HashMap的顶层接口
+  - 需要包含put, get, size方法
+  - 一个内部接口Entry<K, V>（内部接口包含getKey()和getValue()两个方法）
+- 内部类Entry：把内部接口Entry<K, V>实现为内部类
+- 成员变量
+  - 默认数组长度
+  - 默认负载因子
+  - Entry数组
+  - HashMap的大小
+- 构造器
+- 哈希函数：哈希函数将任意长度的key转化为固定长度的index（散列值）。优秀的哈希算法应该保证散列值均匀，并且尽量避免冲突（不同的数据有同样的散列值）。下面列出几种，其余可以参考Hash算法原理：https://blog.csdn.net/tanggao1314/article/details/51457585
+  - **生成散列值**
+    - 平方取中法：H(key) = key^2 的中间几位
+    - 基数转换法：变换基底
+    - 除留余数法：哈希表长为m，p为小于等于m的最大素数，H(key) = key % p
+  - 避免冲突
+    - 开放定址法：使用再散列方法调整散列值
+      - 线性探测再散列
+      - 二次探测再散列
+      - 伪随机探测再散列
+    - 再哈希法：同时构造多个不同的哈希函数，如果冲突就使用下一个不同的哈希函数
+    - 链地址法（使用**链表**）：哈希地址为i的元素构成一个称为同义词链的单链表，并将单链表的头指针存在哈希表的第i个单元中
+- put方法：使用哈希函数算出index之后，用“链表”的方式把新元素添加到这个index对应的链表中去
+- HashMap扩容：当map的大小大于默认长度 * 默认负载因子，那么数组的**长度会翻倍**，数组中的数据会**重新散列**然后再存放。重新散列往往是因为长度改变了，所以散列值也会发生改变。在扩容方法写好之后，需要加到put方法中调用。
+- get方法：首先把key进行散列得到index，之后找到index位置的链表，再逐一比较找到真正的entry
+- size方法
 
 
 6. 能说下类加载过程吗

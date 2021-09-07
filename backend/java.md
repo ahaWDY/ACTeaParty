@@ -25,7 +25,7 @@ GC详细参考博客：https://blog.csdn.net/suifeng3051/article/details/4829219
 
 自己动手实现一个HashMap： https://winnerchen.github.io/yiheng.github.io/2017/08/26/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAHashMap/
 
-https://www.huaweicloud.com/articles/498753d943d56991cb9c985732be66e7.html
+HashMap是怎么实现的？手写一个HashMap： https://www.huaweicloud.com/articles/498753d943d56991cb9c985732be66e7.html
 
 
 LeetCode 706: https://leetcode-cn.com/problems/design-hashmap/

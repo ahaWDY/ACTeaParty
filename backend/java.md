@@ -12,10 +12,30 @@ GC详细参考博客：https://blog.csdn.net/suifeng3051/article/details/4829219
 
 现在 Java 生态圈有丰富的第三方类库、网上全面的资料、企业级框架、各种中间件等等，总之你要的都有。
 
-3. 反射用过吗？反射的原理
-4. 讲一下垃圾回收算法
-5. 什么时候使用LinkedList?
-6. 如果让你设计一个 HashMap 如何设计？
-7. 能说下类加载过程吗
-8. jvm如何调优，参数怎么调？如何利用工具分析jvm状态？
-9. 线程和进程的区别
+2. 反射用过吗？反射的原理
+
+
+3. 讲一下垃圾回收算法
+
+
+4. 什么时候使用LinkedList?
+
+
+5. 如果让你设计一个 HashMap 如何设计？
+
+https://winnerchen.github.io/yiheng.github.io/2017/08/26/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAHashMap/
+https://www.huaweicloud.com/articles/498753d943d56991cb9c985732be66e7.html
+LeetCode 706: https://leetcode-cn.com/problems/design-hashmap/
+
+
+
+
+6. 能说下类加载过程吗
+
+
+7. jvm如何调优，参数怎么调？如何利用工具分析jvm状态？
+
+
+8. 线程和进程的区别
+
+

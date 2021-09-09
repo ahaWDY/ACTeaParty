@@ -186,6 +186,45 @@ https://blog.csdn.net/javazejian/article/details/73413292
 
 7. jvm如何调优，参数怎么调？如何利用工具分析jvm状态？
 
+参数篇：https://smartan123.github.io/book/?file=001-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/002-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/0023-JVM%E8%B0%83%E4%BC%98-%E5%8F%82%E6%95%B0%E7%AF%87
+
+工具篇：
+https://www.cnblogs.com/chiangchou/p/jvm-4.html
+
+https://blog.csdn.net/weixin_33759269/article/details/92055380
+
+**参数**
+- -server或者-client设置jvm的运行参数
+  - Server VM 的初始堆空间会大一些，默认使用的是并行垃圾回收器，启动慢运行快。
+  - Client VM相对来讲会保守一些，初始堆空间会小一些，使用串行的垃圾回收器，它的目标是为了让JVM的启动速度更快，但运行速度会比Serverm模式慢些。
+  - JVM在启动的时候会根据硬件和操作系统自动选择使用Server还是Client类型的JVM
+- -XX参数用于jvm的调优和debug操作
+  - boolean类型：例如-XX:+DisableExplicitGC 表示禁用手动调用gc操作，也就是说调用 System.gc()无效
+  - 非boolean类型：例如-XX:NewRatio=1 表示新生代和老年代的比值
+- -Xms与-Xmx
+  - -Xms设置jvm堆内存的初始大小
+  - -Xmx设置jvm堆内存的最大大小
+
+Java 8的堆内存模型
+![1590290219261](https://user-images.githubusercontent.com/26801257/132763829-ed959fe8-db5c-4cdc-be9d-1910523c7f67.png)
+- Young年轻区
+- Tenured年老区
+- MetaData本地内存空间
+
+JVM监控分析工具一般分为两类
+- JDK自带的工具调优：在jdk bin目录下面，以exe的形式直接点击就可以使用，其中包含分析工具已经很强大，几乎涉及了方方面面，但是我们最常使用的只有两款：jvisualvm.exe和jconsole.exe
+  - VisualVM 是一个工具，它提供了一个可视界面，用于查看 Java 虚拟机 (Java Virtual Machine, JVM) 上运行的基于 Java 技术的应用程序（Java 应用程序）的详细信息。
+  - jconsole直接在jdk/bin目录下点击jconsole.exe即可启动。在弹出的框中可以选择本机的监控本机的java应用，也可以选择远程的java服务来监控，如果监控远程服务需要在tomcat启动脚本中添加如下代码。jconsole概览图和主要的功能：概述、内存、线程、类、VM、MBeans等
+```
+-Dcom.sun.management.jmxremote.port=6969
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+``` 
+- 第三方分析工具：有很多，各自的侧重点不同
+  - MAT(Memory Analyzer Tool)，基于Eclipse的内存分析工具
+  - GCViewer
+  - GCeasy
+  - FastThread
 
 8. 线程和进程的区别
 

@@ -193,4 +193,21 @@ Reference: https://github.com/lgwebdream/FE-Interview/issues/14
 
 3. GET和POST的请求的区别
 
-4. POST和PUT请求的区别
+`GET`：**获取资源**，用来请求访问已被URI（统一资源标志符，和URL是包含和被包含的关系）识别的资源。
+`POST`：用来**传输实体的主体**，虽然GET也可以实现，但是一般不用。
+
+**请求参数**：GET请求参数是通过URL传递的，多个参数以&连接，POST请求放在request body中。
+**请求缓存**：GET请求会被缓存，而POST请求不会，除非手动设置。
+**收藏为书签**：GET请求支持，POST请求不支持。
+**安全性**：POST比GET安全，GET请求在浏览器回退时是无害的，而POST会再次请求。
+**历史记录**：GET请求参数会被完整保留在浏览历史记录里，而POST中的参数不会被保留。
+**编码方式**：GET请求只能进行url编码，而POST支持多种编码方式。
+**对参数的数据类型**：GET只接受ASCII字符，而POST没有限制。
+
+补充：通过浏览器地址栏输入URL访问资源的方式都是`GET`请求。
+
+Reference: https://segmentfault.com/a/1190000023940344
+
+
+
+3. POST和PUT请求的区别

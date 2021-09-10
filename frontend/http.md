@@ -210,4 +210,21 @@ Reference: https://segmentfault.com/a/1190000023940344
 
 
 
-3. POST和PUT请求的区别
+4. POST和PUT请求的区别
+
+POST方法和PUT方法请求最根本的区别是发起请求的目的不同。
+
+post 请求的目的是根据资源自身的语义来处理这个资源。 后一个请求不会把第一个请求覆盖掉，所以Post可以用来增加资源。
+
+put请求的目的是用来替换整个目标资源。put 请求具有 **幂等性（idempotent）**，也就是“同样的请求，不管发多少次，每次服务器处理完之后的结果，都和只发一次是一样的。” 如果两个请求相同，后一个请求会把第一个请求覆盖掉，所以PUT可以用来改资源。
+
+
+
+另外在缓存性上，post 的响应是可以被缓存的，put 却不行。
+
+
+
+reference：https://www.huaweicloud.com/articles/ca8109ea722db9de54ec224084e30747.html
+
+https://zhuanlan.zhihu.com/p/58516651
+

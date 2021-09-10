@@ -107,13 +107,34 @@ JDBC连接数据库：使用JDBC连接数据库时，指定连接数据库的驱
 
 4. 什么时候使用LinkedList?
 
+总的来说：
+
+    当操作是在一列 数据的后面添加数据而不是在前面或中间,并且需要随机地访问其中的元素时,使用ArrayList会提供比较好的性能；
+
+    当你的操作是在一列数据的前面或中 间添加或删除数据,并且按照顺序访问其中的元素时,就应该使用LinkedList了。
+
+ArrayList和LinkedList在性能上各 有优缺点，都有各自所适用的地方，总的说来可以描述如下：
+
+1．对ArrayList和LinkedList而言，在列表末尾增加一个元素所花的开销都是固定的。
+
+对 ArrayList而言，主要是在内部数组中增加一项，指向所添加的元素，偶尔可能会导致对数组重新进行分配；
+
+而对LinkedList而言，这个开销是 统一的，分配一个内部Entry对象。
+
+2．在ArrayList的 中间插入或删除一个元素意味着这个列表中剩余的元素都会被移动；
+
+而在LinkedList的中间插入或删除一个元素的开销是固定的。
+
+3．LinkedList不 支持高效的随机元素访问。
+
+4．ArrayList的空 间浪费主要体现在在list列表的结尾预留一定的容量空间，而LinkedList的空间花费则体现在它的每一个元素都需要消耗相当的空间
+
 
 5. 如果让你设计一个 HashMap 如何设计？
 
 自己动手实现一个HashMap： https://winnerchen.github.io/yiheng.github.io/2017/08/26/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAHashMap/
 
 HashMap是怎么实现的？手写一个HashMap： https://www.huaweicloud.com/articles/498753d943d56991cb9c985732be66e7.html
-
 
 LeetCode 706: https://leetcode-cn.com/problems/design-hashmap/
 
@@ -186,7 +207,60 @@ https://blog.csdn.net/javazejian/article/details/73413292
 
 7. jvm如何调优，参数怎么调？如何利用工具分析jvm状态？
 
+参数篇：https://smartan123.github.io/book/?file=001-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/002-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/0023-JVM%E8%B0%83%E4%BC%98-%E5%8F%82%E6%95%B0%E7%AF%87
+
+工具篇：
+https://www.cnblogs.com/chiangchou/p/jvm-4.html
+
+https://blog.csdn.net/weixin_33759269/article/details/92055380
+
+**参数**
+- -server或者-client设置jvm的运行参数
+  - Server VM 的初始堆空间会大一些，默认使用的是并行垃圾回收器，启动慢运行快。
+  - Client VM相对来讲会保守一些，初始堆空间会小一些，使用串行的垃圾回收器，它的目标是为了让JVM的启动速度更快，但运行速度会比Serverm模式慢些。
+  - JVM在启动的时候会根据硬件和操作系统自动选择使用Server还是Client类型的JVM
+- -XX参数用于jvm的调优和debug操作
+  - boolean类型：例如-XX:+DisableExplicitGC 表示禁用手动调用gc操作，也就是说调用 System.gc()无效
+  - 非boolean类型：例如-XX:NewRatio=1 表示新生代和老年代的比值
+- -Xms与-Xmx
+  - -Xms设置jvm堆内存的初始大小
+  - -Xmx设置jvm堆内存的最大大小
+
+Java 8的堆内存模型
+![1590290219261](https://user-images.githubusercontent.com/26801257/132763829-ed959fe8-db5c-4cdc-be9d-1910523c7f67.png)
+- Young年轻区
+- Tenured年老区
+- MetaData本地内存空间
+
+JVM监控分析工具一般分为两类
+- JDK自带的工具调优：在jdk bin目录下面，以exe的形式直接点击就可以使用，其中包含分析工具已经很强大，几乎涉及了方方面面，但是我们最常使用的只有两款：jvisualvm.exe和jconsole.exe
+  - VisualVM 是一个工具，它提供了一个可视界面，用于查看 Java 虚拟机 (Java Virtual Machine, JVM) 上运行的基于 Java 技术的应用程序（Java 应用程序）的详细信息。
+  - jconsole直接在jdk/bin目录下点击jconsole.exe即可启动。在弹出的框中可以选择本机的监控本机的java应用，也可以选择远程的java服务来监控，如果监控远程服务需要在tomcat启动脚本中添加如下代码。jconsole概览图和主要的功能：概述、内存、线程、类、VM、MBeans等
+```
+-Dcom.sun.management.jmxremote.port=6969
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+``` 
+- 第三方分析工具：有很多，各自的侧重点不同
+  - MAT(Memory Analyzer Tool)，基于Eclipse的内存分析工具
+  - GCViewer
+  - GCeasy
+  - FastThread
 
 8. 线程和进程的区别
 
+https://www.huaweicloud.com/articles/d90c9bf248c8f1731946d65786c95379.html
+
+https://www.zhihu.com/question/25532384
+
+详细版本：https://blog.csdn.net/ThinkWon/article/details/102021274
+
+一句话：进程圈起一部分内存空间，执行一段代码，关注资源的管理；而线程则在进程内部着重关注CPU运行，也可以拓展为多线程
+
+- 根本区别：进程是操作系统资源分配的基本单位，而线程是处理器任务调度和执行的基本单位
+- 资源开销：每个进程都有独立的代码和数据空间（程序上下文），程序之间的切换会有较大的开销；线程可以看做轻量级的进程，同一类线程共享代码和数据空间，每个线程都有自己独立的运行栈和程序计数器（PC），线程之间切换的开销小。
+- 包含关系：如果一个进程内有多个线程，则执行过程不是一条线的，而是多条线（线程）共同完成的；线程是进程的一部分，所以线程也被称为轻权进程或者轻量级进程。
+- 内存分配：同一进程的线程共享本进程的地址空间和资源，而进程之间的地址空间和资源是相互独立的
+- 影响关系：一个进程崩溃后，在保护模式下不会对其他进程产生影响，但是一个线程崩溃整个进程都死掉。所以多进程要比多线程健壮。
+- 执行过程：每个独立的进程有程序运行的入口、顺序执行序列和程序出口。但是线程不能独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制，两者均可并发执行
 

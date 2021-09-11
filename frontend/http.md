@@ -228,3 +228,9 @@ reference：https://www.huaweicloud.com/articles/ca8109ea722db9de54ec224084e3074
 
 https://zhuanlan.zhihu.com/p/58516651
 
+5. websocket如何握手建立连接？
+
+6. tcp的三次握手和四次挥手的过程?四次握手的时候如果有一方一直不发送关闭有什么弊端?拥塞控制?滑动窗口?快重传?
+
+
+

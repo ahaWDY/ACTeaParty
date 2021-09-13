@@ -266,6 +266,21 @@ https://www.zhihu.com/question/25532384
 
 9. java 容器都有哪些？
 
+推荐博客：https://zhuanlan.zhihu.com/p/94312830
+
+Java容器是一个Java所编写的程序。
+
+    容器可以管理对象的生命周期、对象与对象之间的依赖关系。
+
+    您可以使用一个配置文件（通常是XML），在上面定义好对象的名称、如何产生（Prototype 方式或Singleton 方式）、哪个对象产生之后必须设定成为某个对象的属性等，在启动容器之后，所有的对象都可以直接取用，不用编写任何一行程序代码来产生对象，或是建立对象与对象之间的依赖关系。
+
+Java 容器分为 Collection 和 Map 两大类，其下又有很多子类，如下所示：
+
+- Collection：List，ArrayList，LinkedList，Vector，Stack，Set，HashSet，LinkedHashSet，TreeSet
+
+- Map：HashMap，LinkedHashMap，TreeMap，ConcurrentHashMap，Hashtable
+
+
 10. jsp 和 servlet 有什么区别？
 
 知乎回答：https://www.zhihu.com/question/37962386

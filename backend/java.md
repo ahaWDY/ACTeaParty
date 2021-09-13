@@ -268,6 +268,22 @@ https://www.zhihu.com/question/25532384
 
 10. jsp 和 servlet 有什么区别？
 
+知乎回答：https://www.zhihu.com/question/37962386
+菜鸟教程：https://www.runoob.com/jsp/jsp-intro.html
+
+
+- JSP (Java Server Pages) 用JSP标签在HTML网页中插入Java代码，标签以<%开头，以%>结束。HTML和Java代码共同存在。Servlet输出HTML非常困难，JSP就是替代Servlet输出HTML的。JSP本身也是一种Servlet，JSP第一次被访问是会被编译为HttpJspPage类（该类是HttpServlet的一个子类）。
+- Servlet其实就是一个遵循Servlet开发的Java类。Servlet是由服务器调用的，运行在服务器端。主要为了实现网上实现聊天、发帖这样的一些交互功能。
+
+区别：
+- Servlet在Java代码中通过HttpServletResponse对象动态输出HTML内容；JSP在静态HTML内容中嵌入Java代码，Java代码被动态执行后生成HTML内容
+- Servlet能够很好地组织业务逻辑代码，但是在Java源文件中通过字符串拼接的方式生成动态HTML内容，需要处理大量的println语句，导致代码维护困难，可读性差；JSP虽然规避了Servlet在生成HTML内容方面的劣势，但是也会混入大量、复杂的业务逻辑。
+- 可以通过MVC(Model-View-Controller)模式双剑合璧，在Controller/业务部分主要使用Servlet，在View/生成方面使用JSP
+    - Web浏览器发送HTTP请求到服务端，被Controller(Servlet)获取并进行处理（例如参数解析、请求转发）
+    - Controller(Servlet)调用核心业务逻辑也就是Model部分，获得结果
+    - Controller(Servlet)将逻辑处理结果交给View（JSP），动态输出HTML内容
+    - 动态生成的HTML内容返回到浏览器显示
+
 11. java中哪些集合类是线程安全的？
 
 12. java中创建线程有哪几种方式？

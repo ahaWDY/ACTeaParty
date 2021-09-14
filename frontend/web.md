@@ -42,5 +42,9 @@ https://cloud.tencent.com/developer/article/1782140
 
 
 2. 场景题：淘宝想要统计整个当前页面html文档的不同标签数量？你会怎么设计，怎么做？
+循环递归遍历整个页面，然后用document.getElementByTagName('*')来获取标签的名字，放进字典里，统计数量。
+referennce: nowcoder.com/discuss/734451?type=post&order=time&pos=&page=1&ncTraceId=&channel=-1&source_id=search_post_nctrack
+
+
 
 3. 遇到跨域的问题前端是怎么解决的？

@@ -303,5 +303,18 @@ Java 容器分为 Collection 和 Map 两大类，其下又有很多子类，如�
 
 12. java中创建线程有哪几种方式？
 
+参考：https://segmentfault.com/a/1190000022878543
 
+- 定义子类，继承Thread类创建线程类，调用start()启动线程；Java只能单继承，所以该线程不能继承其他类
+- 实现Runnable接口，创建线程类，调用start()启动线程；只是实现了接口，还可以继承其他父类
+- 通过Callable和Future创建线程；只是实现了接口，还可以继承其他父类
+    - （1）创建Callable接口的实现类，并实现call()方法，该call()方法将作为线程执行体，并且有返回值。
+    - （2）创建Callable实现类的实例，使用FutureTask类来包装Callable对象，该FutureTask对象封装了该Callable对象的call()方法的返回值。
+    - （3）使用FutureTask对象作为Thread对象的target创建并启动新线程。
+    - （4）调用FutureTask对象的get()方法来获得子线程执行结束后的返回值。
 
+Runnable和Callable的区别
+ - (1) Callable规定（重写）的方法是call()，Runnable规定（重写）的方法是run()。
+ - (2) Callable的任务执行后可返回值，而Runnable的任务是不能返回值的。
+ - (3) call方法可以抛出异常，run方法不可以。
+ - (4) 运行Callable任务可以拿到一个Future对象，表示异步计算的结果。它提供了检查计算是否完成的方法，以等待计算的完成，并检索计算的结果。通过Future对象可以了解任务执行情况，可取消任务的执行，还可获取执行结果。

@@ -228,7 +228,139 @@ reference：https://www.huaweicloud.com/articles/ca8109ea722db9de54ec224084e3074
 
 https://zhuanlan.zhihu.com/p/58516651
 
+
+
 5. websocket如何握手建立连接？
+
+WebSocket protocol 是HTML5一种新的协议。它实现了浏览器与服务器全双工通信(full-duplex)。一开始的握手需要借助HTTP请求完成。
+
+### 目的：即时通讯，替代轮询
+
+网站上的即时通讯是很常见的，比如网页的QQ，聊天系统等。按照以往的技术能力通常是采用**轮询、Comet**技术解决。
+
+HTTP协议是非持久化的，单向的网络协议，在建立连接后只允许浏览器向服务器发出请求后，服务器才能返回相应的数据。当需要即时通讯时，通过轮询在特定的时间间隔（如1秒），由浏览器向服务器发送Request请求，然后将最新的数据返回给浏览器。这样的方法最明显的缺点就是需要不断的发送请求，而且通常HTTP request的Header是非常长的，为了传输一个很小的数据 需要付出巨大的代价，是很不合算的，占用了很多的宽带。
+
+缺点：会导致过多不必要的请求，浪费流量和服务器资源，每一次请求、应答，都浪费了一定流量在相同的头部信息上
+
+然而WebSocket的出现可以弥补这一缺点。在WebSocket中，只需要服务器和浏览器通过HTTP协议进行一个握手的动作，然后单独建立一条TCP的通信通道进行数据的传送。
+
+- 原理
+
+WebSocket同HTTP一样也是应用层的协议，但是它是一种**双向通信协议**，是建立在TCP之上的。
+
+- 连接过程 —— 握手过程
+
+- 1. 浏览器、服务器建立TCP连接，三次握手。这是通信的基础，传输控制层，若失败后续都不执行。
+
+     
+
+  2. TCP连接成功后，浏览器通过HTTP协议向服务器传送WebSocket支持的版本号等信息。（**开始前的HTTP握手**）
+
+     
+
+  3. 服务器收到客户端的握手请求后，**同样采用HTTP协议**回馈数据。
+
+     
+
+  4. 当收到了连接成功的消息后，通过TCP通道进行传输通信。
+
+- WebSocket与HTTP的关系
+- 相同点
+
+- 1. 都是一样基于TCP的，都是可靠性传输协议。
+
+  2. 都是应用层协议。
+
+- 不同点
+
+  1. WebSocket是双向通信协议，模拟Socket协议，可以双向发送或接受信息。HTTP是单向的。
+
+  2. WebSocket是需要握手进行建立连接的。
+
+
+- 联系
+
+WebSocket在建立握手时，数据是通过HTTP传输的。但是建立之后，在真正传输时候是不需要HTTP协议的。
+
+- WebSocket与Socket的关系
+
+Socket其实并不是一个协议，而是为了方便使用TCP或UDP而抽象出来的一层，是位于应用层和传输控制层之间的一组接口。
+
+> Socket是应用层与TCP/IP协议族通信的中间软件抽象层，它是一组接口。在设计模式中，Socket其实就是一个门面模式，它把复杂的TCP/IP协议族隐藏在Socket接口后面，对用户来说，一组简单的接口就是全部，让Socket去组织数据，以符合指定的协议。
+
+当两台主机通信时，必须通过Socket连接，Socket则利用TCP/IP协议建立TCP连接。TCP连接则更依靠于底层的IP协议，IP协议的连接则依赖于链路层等更低层次。
+
+WebSocket则是一个典型的应用层协议。
+
+- 区别
+
+**Socket是传输控制层协议，WebSocket是应用层协议。**
+
+- WebSocket 机制
+
+以下简要介绍一下 WebSocket 的原理及运行机制。
+
+WebSocket 是 HTML5 一种新的协议。它实现了浏览器与服务器全双工通信，能更好的节省服务器资源和带宽并达到实时通讯，它建立在 TCP 之上，同 HTTP 一样通过 TCP 来传输数据，但是它和 HTTP 最大不同是：
+
+- WebSocket 是一种双向通信协议，在建立连接后，WebSocket 服务器和 Browser/Client Agent 都能主动的向对方发送或接收数据，就像 Socket 一样；
+- WebSocket 需要类似 TCP 的客户端和服务器端通过握手连接，连接成功后才能相互通信。
+
+非 WebSocket 模式传统 HTTP 客户端与服务器的交互如下图所示：
+
+##### 图 1. 传统 HTTP 请求响应客户端服务器交互图
+
+![img](https://filescdn.proginn.com/38d79ac50bb3b7e2eb8040afaf5084c6/81104ee51b31e59990443b7f3def683a.webp)
+
+图 1. 传统 HTTP 请求响应客户端服务器交互图
+
+使用 WebSocket 模式客户端与服务器的交互如下图：
+
+##### 图 2.WebSocket 请求响应客户端服务器交互图
+
+![img](https://filescdn.proginn.com/33ea46524e9bf664f68bee0d35669ee6/2b83897ec988a3687649886b2dd2ceb0.webp)
+
+
+
+图 2.WebSocket 请求响应客户端服务器交互图
+
+上图对比可以看出，相对于传统 HTTP 每次请求-应答都需要客户端与服务端建立连接的模式，WebSocket 是类似 Socket 的 TCP 长连接的通讯模式，一旦 WebSocket 连接建立后，后续数据都以帧序列的形式传输。在客户端断开 WebSocket 连接或 Server 端断掉连接前，不需要客户端和服务端重新发起连接请求。在海量并发及客户端与服务器交互负载流量大的情况下，极大的节省了网络带宽资源的消耗，有明显的性能优势，且客户端发送和接受消息是在同一个持久连接上发起，实时性优势明显。
+
+我们再通过客户端和服务端交互的报文看一下 WebSocket 通讯与传统 HTTP 的不同：
+
+在客户端，new WebSocket 实例化一个新的 WebSocket 客户端对象，连接类似 ws://yourdomain:port/path 的服务端 WebSocket URL，WebSocket 客户端对象会自动解析并识别为 WebSocket 请求，从而连接服务端端口，执行双方握手过程，客户端发送数据格式类似：
+
+##### 清单 1.WebSocket 客户端连接报文
+
+```
+GET /webfin/websocket/ HTTP/1.1
+Host: localhost
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: xqBt3ImNzJbYqRINxEFlkg==
+Origin: http://localhost:8080
+Sec-WebSocket-Version: 13
+```
+
+可以看到，客户端发起的 WebSocket 连接报文类似传统 HTTP 报文，”Upgrade：websocket”参数值表明这是 WebSocket 类型请求，“Sec-WebSocket-Key”是 WebSocket 客户端发送的一个 base64 编码的密文，要求服务端必须返回一个对应加密的“Sec-WebSocket-Accept”应答，否则客户端会抛出“Error during WebSocket handshake”错误，并关闭连接。
+
+服务端收到报文后返回的数据格式类似：
+
+##### 清单 2.WebSocket 服务端响应报文
+
+```
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: K7DJLdLooIwIG/MOpvWFB3y3FE8=
+```
+
+“Sec-WebSocket-Accept”的值是服务端采用与客户端一致的密钥计算出来后返回客户端的,“HTTP/1.1 101 Switching Protocols”表示服务端接受 WebSocket 协议的客户端连接，经过这样的请求-响应处理后，客户端服务端的 WebSocket 连接握手成功, 后续就可以进行 TCP 通讯了。
+
+在开发方面，WebSocket API 也十分简单，我们只需要实例化 WebSocket，创建连接，然后服务端和客户端就可以相互发送和响应消息，在下文 WebSocket 实现及案例分析部分，可以看到详细的 WebSocket API 及代码实现。
+
+Reference: https://jishuin.proginn.com/p/763bfbd32153
+
+
 
 6. tcp的三次握手和四次挥手的过程?四次握手的时候如果有一方一直不发送关闭有什么弊端?拥塞控制?滑动窗口?快重传?
 

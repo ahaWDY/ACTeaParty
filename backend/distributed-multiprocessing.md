@@ -30,7 +30,8 @@
 
 
 3. 在 java 程序中怎么保证多线程的运行安全？
-https://www.yisu.com/ask/4484.html
+4. 
+参考博客：https://www.yisu.com/ask/4484.html
 - 使用安全类，比如 Java. util. concurrent 下的类。
 - 使用自动锁 synchronized。
 - 使用手动锁 Lock。
@@ -38,7 +39,8 @@ https://www.yisu.com/ask/4484.html
 - 保证一个线程对共享变量的修改，另外一个线程能够立刻看到。
 - 保证程序执行的顺序按照代码的先后顺序执行。
 
-https://blog.csdn.net/meism5/article/details/90266334
+参考博客：https://blog.csdn.net/meism5/article/details/90266334
+
 线程的安全性问题体现在：
 - 原子性：一个或者多个操作在 CPU 执行的过程中不被中断的特性
 - 可见性：一个线程对共享变量的修改，另外一个线程能够立刻看到

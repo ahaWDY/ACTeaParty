@@ -66,3 +66,27 @@ Happens-Before 规则如下：
 - 对象终结规则：一个对象的初始化完成(构造函数执行结束)先行发生于它的finalize()方法的开始
 
 4. 说一下 synchronized 底层实现原理？
+
+参考博客：https://www.cnblogs.com/aspirant/p/11470858.html
+
+Synchronized是Java中解决并发问题的一种最常用的方法，也是最简单的一种方法。Synchronized的作用主要有三个：
+
+1. 原子性：确保线程互斥的访问同步代码；
+2. 可见性：保证共享变量的修改能够及时可见，其实是通过Java内存模型中的 “对一个变量unlock操作之前，必须要同步到主内存中；如果对一个变量进行lock操作，则将会清空工作内存中此变量的值，在执行引擎使用此变量前，需要重新从主内存中load操作或assign操作初始化变量值” 来保证的；
+3. 有序性：有效解决重排序问题，即 “一个unlock操作先行发生(happen-before)于后面对同一个锁的lock操作”；
+
+从语法上讲，Synchronized可以把任何一个非null对象作为"锁"，在HotSpot JVM实现中，锁有个专门的名字：对象监视器（Object Monitor）。
+
+Synchronized总共有三种用法：
+
+1. 当synchronized作用在实例方法时，监视器锁（monitor）便是对象实例（this）；
+2. 当synchronized作用在静态方法时，监视器锁（monitor）便是对象的Class实例，因为Class数据存在于永久代，因此静态方法锁相当于该类的一个全局锁；
+3. 当synchronized作用在某一个对象实例时，监视器锁（monitor）便是括号括起来的对象实例；
+
+原理
+
+1. monitorenter：每个对象都是一个监视器锁（monitor）。当monitor被占用时就会处于锁定状态，线程执行monitorenter指令时尝试获取monitor的所有权，过程如下：
+   1. 如果monitor的进入数为0，则该线程进入monitor，然后将进入数设置为1，该线程即为monitor的所有者；
+   2. 如果线程已经占有该monitor，只是重新进入，则进入monitor的进入数加1；
+   3. 如果其他线程已经占用了monitor，则该线程进入阻塞状态，直到monitor的进入数为0，再重新尝试获取monitor的所有权；
+2. monitorexit：执行monitorexit的线程必须是objectref所对应的monitor的所有者。指令执行时，monitor的进入数减1，如果减1后进入数为0，那线程退出monitor，不再是这个monitor的所有者。其他被这个monitor阻塞的线程可以尝试去获取这个 monitor 的所有权。

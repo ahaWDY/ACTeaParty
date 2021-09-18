@@ -1,4 +1,4 @@
-1. 你觉得 Java 好在哪儿？
+## 1. 你觉得 Java 好在哪儿？
 
 首先 Java 是跨平台的，不同平台执行的机器码是不一样的，而 Java 因为加了一层中间层 JVM ，所以可以做到一次编写多平台运行，即 「Write once, Run anywhere」。
 
@@ -12,7 +12,7 @@ GC详细参考博客：https://blog.csdn.net/suifeng3051/article/details/4829219
 
 现在 Java 生态圈有丰富的第三方类库、网上全面的资料、企业级框架、各种中间件等等，总之你要的都有。
 
-2. 反射用过吗？反射的原理
+## 2. 反射用过吗？反射的原理
 
 参考博客：https://blog.csdn.net/m0_57541165/article/details/117922838?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4.no_search_link&spm=1001.2101.3001.4242
 
@@ -33,7 +33,7 @@ JDBC连接数据库：使用JDBC连接数据库时，指定连接数据库的驱
 缺点：破坏类的封装性：可以强制访问 private 修饰的信息；性能损耗：反射相比直接实例化对象、调用方法、访问变量，中间需要非常多的检查步骤和解析步骤，JVM无法对它们优化
 
 
-3. 讲一下垃圾回收算法
+## 3. 讲一下垃圾回收算法
 
 详细参考博客：https://juejin.cn/post/6981812825735987208#heading-15
 
@@ -105,7 +105,7 @@ JDBC连接数据库：使用JDBC连接数据库时，指定连接数据库的驱
 - 该类对应的java.lang.Class对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。.
 
 
-4. 什么时候使用LinkedList?
+## 4. 什么时候使用LinkedList?
 
 总的来说：
 
@@ -130,7 +130,7 @@ ArrayList和LinkedList在性能上各 有优缺点，都有各自所适用的地
 4．ArrayList的空 间浪费主要体现在在list列表的结尾预留一定的容量空间，而LinkedList的空间花费则体现在它的每一个元素都需要消耗相当的空间
 
 
-5. 如果让你设计一个 HashMap 如何设计？
+## 5. 如果让你设计一个 HashMap 如何设计？
 
 自己动手实现一个HashMap： https://winnerchen.github.io/yiheng.github.io/2017/08/26/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAHashMap/
 
@@ -167,7 +167,8 @@ LeetCode 706: https://leetcode-cn.com/problems/design-hashmap/
 - size方法
 
 
-6. 能说下类加载过程吗
+## 6. 能说下类加载过程吗
+
 推荐：https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.md
 
 https://blog.csdn.net/javazejian/article/details/73413292
@@ -205,7 +206,7 @@ https://blog.csdn.net/javazejian/article/details/73413292
 
 执行构造器`init()`；如果该类具有父类，则优先保证父类`init()`先执行，再执行子类`init()`
 
-7. jvm如何调优，参数怎么调？如何利用工具分析jvm状态？
+## 7. jvm如何调优，参数怎么调？如何利用工具分析jvm状态？
 
 参数篇：https://smartan123.github.io/book/?file=001-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/002-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/0023-JVM%E8%B0%83%E4%BC%98-%E5%8F%82%E6%95%B0%E7%AF%87
 
@@ -247,7 +248,7 @@ JVM监控分析工具一般分为两类
   - GCeasy
   - FastThread
 
-8. 线程和进程的区别
+## 8. 线程和进程的区别
 
 https://www.huaweicloud.com/articles/d90c9bf248c8f1731946d65786c95379.html
 
@@ -264,7 +265,7 @@ https://www.zhihu.com/question/25532384
 - 影响关系：一个进程崩溃后，在保护模式下不会对其他进程产生影响，但是一个线程崩溃整个进程都死掉。所以多进程要比多线程健壮。
 - 执行过程：每个独立的进程有程序运行的入口、顺序执行序列和程序出口。但是线程不能独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制，两者均可并发执行
 
-9. java 容器都有哪些？
+## 9. java 容器都有哪些？
 
 推荐博客：https://zhuanlan.zhihu.com/p/94312830
 
@@ -281,7 +282,7 @@ Java 容器分为 Collection 和 Map 两大类，其下又有很多子类，如�
 - Map：HashMap，LinkedHashMap，TreeMap，ConcurrentHashMap，Hashtable
 
 
-10. jsp 和 servlet 有什么区别？
+## 10. jsp 和 servlet 有什么区别？
 
 知乎回答：https://www.zhihu.com/question/37962386
 菜鸟教程：https://www.runoob.com/jsp/jsp-intro.html
@@ -299,7 +300,7 @@ Java 容器分为 Collection 和 Map 两大类，其下又有很多子类，如�
     - Controller(Servlet)将逻辑处理结果交给View（JSP），动态输出HTML内容
     - 动态生成的HTML内容返回到浏览器显示
 
-11. java中哪些集合类是线程安全的？
+## 11. java中哪些集合类是线程安全的？
 
 早在jdk的1.1版本中，所有的集合都是线程安全的。但是在1.2以及之后的版本中就出现了一些线程不安全的集合，为什么版本升级会出现一些线程不安全的集合呢？因为线程不安全的集合普遍比线程安全的集合效率高的多。随着业务的发展，特别是在web应用中，为了提高用户体验减少用户的等待时间，页面响应速度(也就是效率)是优先考虑的。而且对线程不安全的集合加锁以后也能达到安全的效果(但是效率会低，因为会有锁的获取以及等待)。其实在jdk源码中相同效果的集合线程安全的比线程不安全的就多了一个同步机制，但是效率上却低了不止一点点，因为效率低，所以已经不太建议使用了。下面举一些常用的功能相同却线程安全和不安全的集合。
 
@@ -312,7 +313,7 @@ ConcurrentHashMap:是一种高效但是线程安全的集合。
 Stack：栈，也是线程安全的，继承于Vector。
 
 
-12. java中创建线程有哪几种方式？
+## 12. java中创建线程有哪几种方式？
 
 参考：https://segmentfault.com/a/1190000022878543
 
@@ -329,3 +330,10 @@ Runnable和Callable的区别
  - (2) Callable的任务执行后可返回值，而Runnable的任务是不能返回值的。
  - (3) call方法可以抛出异常，run方法不可以。
  - (4) 运行Callable任务可以拿到一个Future对象，表示异步计算的结果。它提供了检查计算是否完成的方法，以等待计算的完成，并检索计算的结果。通过Future对象可以了解任务执行情况，可取消任务的执行，还可获取执行结果。
+
+## 13. Java中什么是单例？
+
+
+## 14. 什么是Java序列化？什么情况下需要序列化？
+
+

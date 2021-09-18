@@ -1,6 +1,6 @@
 # 分布式及多线程面试题
 
-1. 如何设计一个线程池？
+**1. 如何设计一个线程池？**
 
 关于线程的面试题：https://juejin.cn/post/6968721240592744455
 
@@ -12,7 +12,7 @@
 
 线程池初始化时，会创建一定数量的线程并放入Threads链表中，每个线程处理函数开启一个死循环，通过条件变量等待信号的到来；当有新的任务到来时，会加入Jobs中，并同时通过信号唤醒线程处理相应任务。
 
-2. 并行和并发有什么区别？
+**2. 并行和并发有什么区别？**
 
 参考博客：https://cloud.tencent.com/developer/article/1424249
 
@@ -29,8 +29,8 @@
 只有在多CPU的情况中，才会发生并行。否则，看似同时发生的事情，其实都是并发执行的。
 
 
-3. 在 java 程序中怎么保证多线程的运行安全？
-4. 
+**3. 在 java 程序中怎么保证多线程的运行安全？**
+ 
 参考博客：https://www.yisu.com/ask/4484.html
 - 使用安全类，比如 Java. util. concurrent 下的类。
 - 使用自动锁 synchronized。
@@ -65,7 +65,7 @@ Happens-Before 规则如下：
 - 线程中断规则：对线程interrupt()方法的调用先行发生于被中断线程的代码检测到中断事件的发生
 - 对象终结规则：一个对象的初始化完成(构造函数执行结束)先行发生于它的finalize()方法的开始
 
-4. 说一下 synchronized 底层实现原理？
+**4. 说一下 synchronized 底层实现原理？**
 
 参考博客：https://www.cnblogs.com/aspirant/p/11470858.html
 
@@ -90,3 +90,8 @@ Synchronized总共有三种用法：
    2. 如果线程已经占有该monitor，只是重新进入，则进入monitor的进入数加1；
    3. 如果其他线程已经占用了monitor，则该线程进入阻塞状态，直到monitor的进入数为0，再重新尝试获取monitor的所有权；
 2. monitorexit：执行monitorexit的线程必须是objectref所对应的monitor的所有者。指令执行时，monitor的进入数减1，如果减1后进入数为0，那线程退出monitor，不再是这个monitor的所有者。其他被这个monitor阻塞的线程可以尝试去获取这个 monitor 的所有权。
+
+**5. 什么是消息队列？**
+
+**6. 线程的run()和start()有什么区别？**
+

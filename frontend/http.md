@@ -1,6 +1,6 @@
 # HTTP面试题
 
-1. 如何用ajax原生实现一个post请求？
+**1. 如何用ajax原生实现一个post请求？**
 
 ```js
 var data = {
@@ -53,7 +53,7 @@ https://blog.csdn.net/weixin_30607659/article/details/96514887
 
 
 
-2. 说一下 Http 缓存策略，有什么区别，分别解决了什么问题
+**2. 说一下 Http 缓存策略，有什么区别，分别解决了什么问题**
 
 **1）浏览器缓存策略**
 
@@ -191,7 +191,7 @@ Reference: https://github.com/lgwebdream/FE-Interview/issues/14
 
 
 
-3. GET和POST的请求的区别
+**3. GET和POST的请求的区别**
 
 `GET`：**获取资源**，用来请求访问已被URI（统一资源标志符，和URL是包含和被包含的关系）识别的资源。
 `POST`：用来**传输实体的主体**，虽然GET也可以实现，但是一般不用。
@@ -210,7 +210,7 @@ Reference: https://segmentfault.com/a/1190000023940344
 
 
 
-4. POST和PUT请求的区别
+**4. POST和PUT请求的区别**
 
 POST方法和PUT方法请求最根本的区别是发起请求的目的不同。
 
@@ -230,7 +230,7 @@ https://zhuanlan.zhihu.com/p/58516651
 
 
 
-5. websocket如何握手建立连接？
+**5. websocket如何握手建立连接？**
 
 WebSocket protocol 是HTML5一种新的协议。它实现了浏览器与服务器全双工通信(full-duplex)。一开始的握手需要借助HTTP请求完成。
 

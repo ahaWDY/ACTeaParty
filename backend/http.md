@@ -1,6 +1,6 @@
 # http面试题
 
-1. session 和 cookie 有什么区别？
+**1. session 和 cookie 有什么区别？**
 
 https://www.cnblogs.com/ityouknow/p/10856177.html
 

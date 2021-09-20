@@ -22,6 +22,35 @@ Reference: https://www.jianshu.com/p/47d949d0898a
 
 ## 2. onload、DOMReady 的区别？
 
+### Dom文档加载的步骤：
+
+1. 解析html结构；
+2. 加载外部脚本和样式表文件；
+3. 解析并执行脚本；
+4. dom树构建完成（DOMContentLoaded）；
+5. 加载图片等外部文件；
+6. 页面加载完毕。
+
+### DOM ready、DOM Load、图片Load
+
+DOM ready：（也叫DOMContentLoaded ），在第4步完成后触发；
+ 图片onload：是在第5步完成后触发；
+ 页面onload：是第6步完成后触发。
+
+由此可见三者执行顺序为：**domready→图片load→页面load。**
+
+DOMContentLoaded与Load事件触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。
+ 如果外部脚本中，出现defer延迟脚本或async异步脚本，这两种脚本有可能在DOMContentLoaded事件之前或之后执行。
+
+### domready和onload事件区别：
+
+前者：在DOM文档结构准备完毕后就可以对DOM进行操作；
+ 后者：当页面完全加载后（整个document文档包括图片、javascript文件、CSS文件等外部资源)，就会触发window上面的load事件。
+
+Reference: https://www.jianshu.com/p/6b0a95cdbc7a
+
+
+
 ## 3. 双飞翼布局具体如何实现？
 
 ## 4. Vuex整个触发过程（actions，state，view）

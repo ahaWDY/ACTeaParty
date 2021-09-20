@@ -339,7 +339,7 @@ Runnable和Callable的区别
 
 ### 懒汉式（不推荐使用）
 
-- 线程不安全
+- 线程不安全：不能多线程使用
 ```{java}
 public class Singleton {  
     private static Singleton instance;  
@@ -354,7 +354,7 @@ public class Singleton {
 }
 ```
 
-- 线程安全
+- 线程安全：加锁影响效率
 ```{java}
 public class Singleton {  
     private static Singleton instance;  
@@ -370,10 +370,11 @@ public class Singleton {
 
 ### 饿汉式
 
+- 容易产生垃圾对象
 ```{java}
 public class Singleton {  
     private static Singleton instance = new Singleton();  
-    private Singleton (){}  
+    private Singleton() {}  
     public static Singleton getInstance() {  
     return instance;  
     }  
@@ -390,6 +391,39 @@ public class Singleton {
     private Singleton (){}  
     public static final Singleton getInstance() {  
     return SingletonHolder.INSTANCE;  
+    }  
+}
+```
+
+### DCL
+
+- 实现比较复杂，更推荐登记式
+
+```{java}
+public class Singleton {  
+    private volatile static Singleton singleton;  
+    private Singleton (){}  
+    public static Singleton getSingleton() {  
+    if (singleton == null) {  
+        synchronized (Singleton.class) {  
+        if (singleton == null) {  
+            singleton = new Singleton();  
+        }  
+        }  
+    }  
+    return singleton;  
+    }  
+}
+```
+
+### 枚举
+
+- 最佳方法，但很少用
+
+```{java}
+public enum Singleton {  
+    INSTANCE;  
+    public void whateverMethod() {  
     }  
 }
 ```

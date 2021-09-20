@@ -333,6 +333,66 @@ Runnable和Callable的区别
 
 ## 13. Java中什么是单例？
 
+菜鸟教程：https://www.runoob.com/design-pattern/singleton-pattern.html
+
+单例保证一个类只有一个实例，并提供一个访问它的全局访问点。主要解决一个全局使用的类频繁创建与销毁的问题。
+
+### 懒汉式（不推荐使用）
+
+- 线程不安全
+```{java}
+public class Singleton {  
+    private static Singleton instance;  
+    private Singleton (){}  
+  
+    public static Singleton getInstance() {  
+    if (instance == null) {  
+        instance = new Singleton();  
+    }  
+    return instance;  
+    }  
+}
+```
+
+- 线程安全
+```{java}
+public class Singleton {  
+    private static Singleton instance;  
+    private Singleton (){}  
+    public static synchronized Singleton getInstance() {  
+    if (instance == null) {  
+        instance = new Singleton();  
+    }  
+    return instance;  
+    }  
+}
+```
+
+### 饿汉式
+
+```{java}
+public class Singleton {  
+    private static Singleton instance = new Singleton();  
+    private Singleton (){}  
+    public static Singleton getInstance() {  
+    return instance;  
+    }  
+}
+```
+
+### 登记式/静态内部类
+
+```{java}
+public class Singleton {  
+    private static class SingletonHolder {  
+    private static final Singleton INSTANCE = new Singleton();  
+    }  
+    private Singleton (){}  
+    public static final Singleton getInstance() {  
+    return SingletonHolder.INSTANCE;  
+    }  
+}
+```
 
 ## 14. 什么是Java序列化？什么情况下需要序列化？
 

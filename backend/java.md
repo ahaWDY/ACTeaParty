@@ -430,4 +430,28 @@ public enum Singleton {
 
 ## 14. 什么是Java序列化？什么情况下需要序列化？
 
+https://zhuanlan.zhihu.com/p/40301488
+
+- 序列化：将Java对象转换成（二进制）字节流的过程
+- 反序列化：将（二进制）字节流转换成Java对象的过程
+
+当Java对象需要在网络上传输或者持久化存储到文件中时，就需要对Java对象进行序列化处理。例如，在常见的web服务中的持久化session就是一个很好的例子。一般session都是入驻内存的，当服务器异常宕机，内存里的session因为掉电而擦除，当我们设置了session持久化特性时，就会把session保存在硬盘上，这就是序列化。等服务器重启后又可以读取硬盘上这个session文件，还原session对象，这就是反序列化。
+
+https://zhuanlan.zhihu.com/p/76045548
+
+### 注意事项
+1. 某个类可以被序列化，则其子类也可以被序列化
+2. 声明为static和transient的成员变量，不能被序列化。static成员变量是描述类级别的属性，transient表示临时数据
+3. 反序列化读取序列化对象的顺序要保持一致
+
+序列化的实现
+- 类实现Serializable接口，这个接口没有需要实现的方法。实现Serializable接口是为了告诉JVM这个类的对象可以被序列化。
+- 实现Externalizable接口，接口中定义了两个方法writeExternal和readExternal
+- ObjectOutputStream
+- ObjectInputStream
+
+
+
+
+
 

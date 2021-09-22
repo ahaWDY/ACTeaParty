@@ -52,6 +52,90 @@ Reference: https://www.jianshu.com/p/6b0a95cdbc7a
 
 
 ## 3. 双飞翼布局具体如何实现？
+双飞翼布局，就是两端固定宽高，中间自适应的三栏布局
+
+### 方式一：通过flex弹性布局来实现
+
+```html
+//HTML结构，div2是中间的自适应区域
+...
+<body>
+    <div class="wrap">
+        <div class="div1"></div>  
+        <div class="div2"></div>
+        <div class="div3"></div>
+    </div>
+</body>
+...
+```
+
+```css
+*{  //先简单粗暴的解决一下浏览器的默认样式  
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing:border-box;   //使用border-box，盒模型好计算，妈妈再也不用担心我算不清块宽高了
+}
+.wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;     //使用弹性布局
+    flex-flow:row nowrap;  //以沿主轴方向行显示，不换行，从而来显示3个块
+    justify-content:space-around;  //这一个加和不叫其实也没事，加上去的意思就是两端对齐
+}
+
+[class^='div']{  // 给所有的div都加上高和边框样式，方便观看，不然都缩成一条线了
+    height: 400px;
+    border: 1px solid #f00;
+}
+
+.div1,.div3{  //给两端的div固定的宽
+    width: 200px;
+    background-color: #ccc;
+    flex-shrink: 1; //默认是1，所以不用写也没事，写出来自是表达这个意思
+}
+.div2{
+    background-color: #0f0;
+    flex-grow:1;  //这个比较重要，作用是让第二个块的宽度撑满剩余的空间
+}
+```
+
+### 方式二：通过定位来实现
+
+HTML结构不变，样式改变
+
+```css
+.wrap{
+    width: 100%;  //同样实现宽高100%铺开
+    height: 100%;
+    position: relative;  //父层添加相对定位，让子元素相对父层来定位
+}
+[class^='div']{
+    height: 400px;
+    border: 1px solid #f00;
+}
+.div1,.div3{
+    position: absolute;
+    width: 200px;
+    background-color: #ccc;
+}
+.div1{
+    left: 0;  //固定在父层的左侧
+    top: 0;
+}
+.div3{
+    right: 0;  //固定在父层的右侧
+    top: 0;
+}
+.div2{
+    background-color: #0f0;
+    /*这个是关键，我们没有给中间的div2添加过宽属性，所以默认占用父层宽的100%，
+     由于两侧块宽是固定的，所以中间的自适应块左右分别200px的外边距中间的content区域就会实现自适应*/
+    margin: 0 200px;  
+}
+```
+
+
 
 ## 4. Vuex整个触发过程（actions，state，view）
 

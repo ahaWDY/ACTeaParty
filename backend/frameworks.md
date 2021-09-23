@@ -73,5 +73,18 @@ Spring中的Bean理论上不是线程安全的，但是实际使用时默认是�
 
 ## 5. Spring Boot配置文件有哪几种类型？它们有什么区别？
 
+https://blog.csdn.net/weixin_49136054/article/details/109297242
+
+- SpringBoot的核心配置文件有application和bootstarp配置文件。
+ - application文件主要用于Springboot自动化配置文件。
+ - bootstrap: 使用Spring Cloud Config注册中心时，需要在bootStrap配置文件中，添加链接到配置中心的配置属性，来加载外部配置中心的配置信息。
+- 配置文件都有什么格式？
+ - .properties 和 .yml
+ - .yml采取的是缩进的格式 不支持@PeopertySource注解导入配置
+
 ## 6. Spring Cloud断路器的作用是什么？
+
+https://www.jianshu.com/p/55f3a1477aa6
+
+在分布式架构中，断路器模式的作用也是类似的，当某个服务单元发生故障（类似用电器发生短路）之后，通过断路器的故障监控（类似熔断保险丝），向调用方返回一个错误响应，而不是长时间的等待。这样就不会使得线程因调用故障服务被长时间占用不释放，避免了故障在分布式系统中的蔓延（防止在分布式系统中出现这种瀑布似的连锁反应导致的灾难）。
 

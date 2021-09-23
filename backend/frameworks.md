@@ -75,7 +75,7 @@ Spring中的Bean理论上不是线程安全的，但是实际使用时默认是�
 
 https://blog.csdn.net/weixin_49136054/article/details/109297242
 
-- SpringBoot的核心配置文件有application和bootstarp配置文件。
+- SpringBoot的核心配置文件有application和bootstrap配置文件。
  - application文件主要用于Springboot自动化配置文件。
  - bootstrap: 使用Spring Cloud Config注册中心时，需要在bootStrap配置文件中，添加链接到配置中心的配置属性，来加载外部配置中心的配置信息。
 - 配置文件都有什么格式？

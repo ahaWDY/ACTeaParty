@@ -59,6 +59,18 @@ Spring中的MVC封装包提供了Web应用的Model-View-Controller（MVC）实�
 
 ## 3. jpa和hibernate有什么区别？
 
+JPA Java Persistence API，是Java EE 5的标准ORM接口，也是ejb3规范的一部分。
+
+Hibernate，当今很流行的ORM框架，是JPA的一个实现，但是其功能是JPA的超集。
+
+JPA和Hibernate之间的关系，可以简单的理解为JPA是标准接口，Hibernate是实现。那么Hibernate是如何实现与JPA的这种关系的呢。Hibernate主要是通过三个组件来实现的，及hibernate-annotation、hibernate-entitymanager和hibernate-core。
+
+hibernate-annotation是Hibernate支持annotation方式配置的基础，它包括了标准的JPA annotation以及Hibernate自身特殊功能的annotation。
+
+hibernate-core是Hibernate的核心实现，提供了Hibernate所有的核心功能。
+
+hibernate-entitymanager实现了标准的JPA，可以把它看成hibernate-core和JPA之间的适配器，它并不直接提供ORM的功能，而是对hibernate-core进行封装，使得Hibernate符合JPA的规范。
+
 ## 4. Spring中的bean是线程安全的吗？
 
 - Spring中的Bean：https://www.awaimai.com/2596.html
